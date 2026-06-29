@@ -31,9 +31,7 @@ export const TaskCard = observer(
   }: ITaskCardProps) => {
     return (
       <Card
-        className={`cursor-grab gap-2 rounded-xl bg-secondary/50 transition-all hover:shadow-md active:cursor-grabbing ${
-          isDragOver ? "scale-[1.02] border-b-10 border-primary" : ""
-        }`}
+        className={`cursor-grab gap-2 rounded-xl bg-background transition-all hover:shadow-md active:cursor-grabbing dark:bg-secondary/50 ${isDragOver ? "scale-[1.02] border-b-10 border-primary" : ""}`}
         draggable
         onDragStart={onDragStart}
         onDragOver={onDragOver}

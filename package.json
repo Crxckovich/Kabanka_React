@@ -5,14 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "dotenv -e .env vite ",
-    "start": "dotenv -e .env vite preview ",
+    "start": "dotenv -e .env vite preview",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:check": "eslint .",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
-    "errors:check": "tsc --noEmit",
-    "preview": "vite preview"
+    "errors:check": "tsc --noEmit"
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.3.5",

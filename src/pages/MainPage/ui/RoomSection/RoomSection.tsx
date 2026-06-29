@@ -21,7 +21,7 @@ export const RoomSection = observer(() => {
 
   if (authStore.isAuth) {
     return (
-      <div className={"px-12 py-5"}>
+      <div className={"space-y-6 px-12 py-5"}>
         <RoomFormsWrapper orientation={"horizontal"} />
         <RoomList
           roomsData={userRoomsStore.roomsData}
