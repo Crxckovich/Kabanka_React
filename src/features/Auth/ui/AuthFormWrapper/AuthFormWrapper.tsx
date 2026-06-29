@@ -13,7 +13,7 @@ export const AuthFormWrapper = () => {
   return (
     <div className={"flex h-screen w-screen items-center justify-center"}>
       <div className={"flex w-full flex-col items-center gap-5"}>
-        <Htag tag={"h1"}>Кабанка</Htag>
+        <Htag tag={"h1"}>Канбанка</Htag>
         {form === "LoginForm" && <LoginForm onFormChange={handleFormChange} />}
         {form === "SignUpForm" && (
           <SignUpForm onFormChange={handleFormChange} />

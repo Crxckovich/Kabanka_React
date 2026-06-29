@@ -1,7 +1,6 @@
 import { useCallback } from "react"
 import { useAuthStore } from "@/app/providers/StoreProvider/StoresRegister.ts"
 import { observer } from "mobx-react-lite"
-import { Button } from "@/shared/ui/Button"
 import { Input } from "@/shared/ui/Input"
 import { useNavigate } from "react-router-dom"
 import { getRouteMain } from "@/shared/const/router.ts"
@@ -12,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/ui/card.tsx"
+import { Button } from "@/shared/ui/Button"
 
 export interface ILoginFormProps {
   onFormChange?: () => void
@@ -36,7 +36,10 @@ export const LoginForm = observer(({ onFormChange }: ILoginFormProps) => {
       </CardHeader>
       <CardContent className={"mb-4"}>
         <form
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleSubmit()
+          }}
           className="flex flex-col gap-6"
         >
           <div>
@@ -57,28 +60,27 @@ export const LoginForm = observer(({ onFormChange }: ILoginFormProps) => {
               required
             />
           </div>
+          <CardFooter className="flex-col gap-2">
+            <Button
+              type="submit"
+              size={"lg"}
+              className={"w-full"}
+              disabled={!authStore.email || !authStore.password}
+            >
+              Войти
+            </Button>
+
+            <Button
+              type="button"
+              className={"w-full"}
+              variant="link"
+              onClick={onFormChange}
+            >
+              Ещё не зарегистрированы?
+            </Button>
+          </CardFooter>
         </form>
       </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button
-          type="submit"
-          size={"lg"}
-          className={"w-full"}
-          onClick={handleSubmit}
-          disabled={!authStore.email || !authStore.password}
-        >
-          Войти
-        </Button>
-
-        <Button
-          type="button"
-          className={"w-full"}
-          variant="link"
-          onClick={onFormChange}
-        >
-          Ещё не зарегистрированы?
-        </Button>
-      </CardFooter>
     </Card>
   )
 })

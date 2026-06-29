@@ -1,39 +1,37 @@
-import { makeAutoObservable, runInAction } from "mobx"
+import { makeAutoObservable } from "mobx"
 import type { IStateSchema, StateSchemaKey } from "./config/StateSchema"
 import { UserStore } from "@/entities/User/model/store/userStore.ts"
 import { AuthStore } from "@/features/Auth/model/store/authStore.ts"
-import { RoomStore } from "@/entities/Room/model/store/roomStore.ts"
+import { RoomStore } from "@/features/RoomOptions/model/store/roomStore.ts"
 import { RoomFormStore } from "@/features/RoomForm/model/store/roomFormStore"
+import { RoomDetailsStore } from "@/pages/RoomPage/model/store/roomDetailsStore.ts"
+import { StatusStore } from "@/features/StatusManage/model/store/statusStore.ts"
+import { UserRoomsStore } from "@/pages/MainPage/model/store/userRoomsStore.ts"
+import { MemberOptionsStore } from "@/features/MemberOptions/model/store/memberOptionsStore.ts"
+import { TaskManageStore } from "@/features/TaskManage/model/store/taskManageStore.ts"
 
 export class RootStore implements IStateSchema {
   userStore: UserStore
   authStore: AuthStore
   roomStore: RoomStore
+  userRoomsStore: UserRoomsStore
   roomFormStore: RoomFormStore
+  roomDetailsStore: RoomDetailsStore
+  statusStore: StatusStore
+  memberOptionsStore: MemberOptionsStore
+  taskManageStore: TaskManageStore
 
   constructor() {
     this.userStore = new UserStore()
     this.authStore = new AuthStore(this)
-    this.roomStore = new RoomStore()
+    this.roomStore = new RoomStore(this)
+    this.userRoomsStore = new UserRoomsStore()
     this.roomFormStore = new RoomFormStore()
+    this.roomDetailsStore = new RoomDetailsStore()
+    this.statusStore = new StatusStore(this)
+    this.memberOptionsStore = new MemberOptionsStore(this)
+    this.taskManageStore = new TaskManageStore(this)
     makeAutoObservable(this, {}, { autoBind: true })
-  }
-
-  registerStore<K extends StateSchemaKey>(
-    key: K,
-    storeInstance: IStateSchema[K]
-  ): void {
-    ;(this as any)[key] = storeInstance
-  }
-
-  removeStore<K extends StateSchemaKey>(key: K): void {
-    if (this[key] !== undefined) {
-      const store = (this as any)[key] as any
-      if (typeof store?.dispose === "function") {
-        store.dispose()
-      }
-      delete (this as any)[key]
-    }
   }
 
   getStore<K extends StateSchemaKey>(key: K): IStateSchema[K] {
@@ -42,24 +40,5 @@ export class RootStore implements IStateSchema {
       throw new Error(`Store "${String(key)}" is not registered yet`)
     }
     return store
-  }
-
-  async loadStore<K extends StateSchemaKey>(
-    key: K,
-    loader: () => Promise<{ default: new (root: RootStore) => IStateSchema[K] }>
-  ): Promise<IStateSchema[K]> {
-    if ((this as any)[key] !== undefined) {
-      return (this as any)[key]
-    }
-
-    const module = await loader()
-    const StoreClass = module.default
-    const storeInstance = new StoreClass(this)
-
-    runInAction(() => {
-      this.registerStore(key, storeInstance)
-    })
-
-    return storeInstance
   }
 }

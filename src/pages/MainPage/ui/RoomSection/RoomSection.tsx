@@ -1,33 +1,43 @@
 import {
   useAuthStore,
-  useRoomStore,
+  useUserRoomsStore,
+  useUserStore,
 } from "@/app/providers/StoreProvider/StoresRegister.ts"
 import { RoomList } from "@/entities/Room"
 import { RoomFormsWrapper } from "@/features/RoomForm"
 import { Htag } from "@/shared/ui/Htag"
 import { useEffect } from "react"
 import { observer } from "mobx-react-lite"
+import { RoomContextMenu } from "@/features/RoomOptions"
 
 export const RoomSection = observer(() => {
   const authStore = useAuthStore()
-  const roomStore = useRoomStore()
+  const userRoomsStore = useUserRoomsStore() // TODO: Реализовать класс по типу createAsyncThunk из Redux
+  const userStore = useUserStore()
 
   useEffect(() => {
-    roomStore.fetchAllUsers()
-  }, [roomStore])
+    userRoomsStore.fetchUserRooms()
+  }, [userRoomsStore])
 
   if (authStore.isAuth) {
     return (
-      <div className="flex flex-col gap-6 p-20">
+      <div className={"px-12 py-5"}>
         <RoomFormsWrapper orientation={"horizontal"} />
-        <RoomList roomsData={roomStore.roomsData} />
+        <RoomList
+          roomsData={userRoomsStore.roomsData}
+          contextMenu={<RoomContextMenu userId={userStore.user.id} />}
+        />
       </div>
     )
   }
 
   return (
-    <div className={"flex h-full flex-col items-center justify-center gap-4"}>
-      <Htag tag={"h1"}>Кабанка</Htag>
+    <div
+      className={
+        "flex h-full w-full flex-col items-center justify-center gap-4"
+      }
+    >
+      <Htag tag={"h1"}>Канбанка</Htag>
       <RoomFormsWrapper />
     </div>
   )

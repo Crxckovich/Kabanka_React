@@ -1,0 +1,150 @@
+Kabanka_React
+├── .env
+├── .prettierignore
+├── .prettierrc
+├── README.md
+├── assets
+│   └── react.svg
+├── bun.lock
+├── components.json
+├── eslint.config.mjs
+├── index.html
+├── package.json
+├── public
+│   └── vite.svg
+├── src
+│   ├── app
+│   │   ├── App.tsx
+│   │   ├── providers
+│   │   │   ├── StoreProvider
+│   │   │   │   ├── RootStore.ts
+│   │   │   │   ├── StoreProvider.tsx
+│   │   │   │   ├── StoresRegister.ts
+│   │   │   │   ├── config
+│   │   │   │   │   └── StateSchema.ts
+│   │   │   │   └── lib
+│   │   │   │       └── hooks
+│   │   │   │           └── useStore.ts
+│   │   │   └── ThemeProvider
+│   │   │       └── ThemeProvider.tsx
+│   │   ├── router
+│   │   │   ├── AppRouter.tsx
+│   │   │   ├── RequireAuth.tsx
+│   │   │   ├── config
+│   │   │   │   └── routerConfig.tsx
+│   │   │   └── types
+│   │   │       └── router.types.ts
+│   │   ├── styles
+│   │   │   └── index.css
+│   │   └── types
+│   │       └── env.d.ts
+│   ├── entities
+│   │   └── User
+│   │       ├── index.ts
+│   │       ├── model
+│   │       │   ├── services
+│   │       │   │   └── UserService.ts
+│   │       │   ├── store
+│   │       │   │   └── userStore.ts
+│   │       │   └── types
+│   │       │       └── user.types.ts
+│   │       └── ui
+│   │           ├── UserInfo.tsx
+│   │           └── UsersList.tsx
+│   ├── features
+│   │   ├── Auth
+│   │   │   ├── index.ts
+│   │   │   ├── model
+│   │   │   │   ├── services
+│   │   │   │   │   └── AuthService.ts
+│   │   │   │   ├── store
+│   │   │   │   │   └── authStore.ts
+│   │   │   │   └── types
+│   │   │   │       └── auth.types.ts
+│   │   │   └── ui
+│   │   │       ├── AuthFormWrapper
+│   │   │       │   └── AuthFormWrapper.tsx
+│   │   │       ├── LoginForm
+│   │   │       │   └── LoginForm.tsx
+│   │   │       ├── LogoutButton
+│   │   │       │   └── LogoutButton.tsx
+│   │   │       └── SignUpForm
+│   │   │           └── SignUpForm.tsx
+│   │   └── RoomForm
+│   │       ├── index.ts
+│   │       └── ui
+│   │           ├── CreateRoomForm
+│   │           │   └── CreateRoomForm.tsx
+│   │           ├── JoinByInviteForm
+│   │           │   └── JoinByInviteForm.tsx
+│   │           └── RoomForm
+│   │               └── RoomFormsWrapper.tsx
+│   ├── lib
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── AuthPage
+│   │   │   ├── index.ts
+│   │   │   └── ui
+│   │   │       ├── AuthPage.async.tsx
+│   │   │       └── AuthPage.tsx
+│   │   ├── ForbiddenPage
+│   │   │   ├── index.ts
+│   │   │   └── ui
+│   │   │       ├── ForbiddenPage.async.tsx
+│   │   │       └── ForbiddenPage.tsx
+│   │   ├── MainPage
+│   │   │   ├── index.ts
+│   │   │   └── ui
+│   │   │       ├── MainPage.async.tsx
+│   │   │       └── MainPage.tsx
+│   │   └── NotFoundPage
+│   │       ├── index.ts
+│   │       └── ui
+│   │           ├── NotFoundPage.async.tsx
+│   │           └── NotFoundPage.tsx
+│   ├── shared
+│   │   ├── api
+│   │   │   ├── api.ts
+│   │   │   └── handleAxiosError.ts
+│   │   ├── config
+│   │   │   └── env.ts
+│   │   ├── const
+│   │   │   ├── localStorage.ts
+│   │   │   └── router.ts
+│   │   ├── lib
+│   │   │   ├── classNames
+│   │   │   │   └── classNames.ts
+│   │   │   ├── components
+│   │   │   │   └── DynamicModuleLoader
+│   │   │   │       ├── DynamicModuleLoader.tsx
+│   │   │   │       └── index.ts
+│   │   │   └── utils
+│   │   │       ├── index.ts
+│   │   │       ├── project-tree.txt
+│   │   │       ├── treeGen.utils.ts
+│   │   │       └── utils.ts
+│   │   └── ui
+│   │       ├── Button
+│   │       │   ├── Button.tsx
+│   │       │   └── index.ts
+│   │       ├── Htag
+│   │       │   ├── Htag.tsx
+│   │       │   └── index.ts
+│   │       ├── Input
+│   │       │   ├── Input.tsx
+│   │       │   └── index.ts
+│   │       ├── PageLoader
+│   │       │   ├── PageLoader.tsx
+│   │       │   └── index.ts
+│   │       ├── card.tsx
+│   │       └── label.tsx
+│   └── widgets
+│       └── Header
+│           ├── index.ts
+│           └── ui
+│               └── Header.tsx
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts

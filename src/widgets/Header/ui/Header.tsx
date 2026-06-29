@@ -6,6 +6,7 @@ import {
 } from "@/app/providers/StoreProvider/StoresRegister.ts"
 import { Htag } from "@/shared/ui/Htag"
 import { LogoutButton } from "@/features/Auth"
+import { getRouteMain } from "@/shared/const/router.ts"
 
 export const Header = () => {
   const authStore = useAuthStore()
@@ -14,10 +15,12 @@ export const Header = () => {
   return (
     <div
       className={
-        "flex w-full items-center justify-between border-b border-border bg-secondary/80 px-10 py-3"
+        "sticky top-0 left-0 flex w-full items-center justify-between border-b border-border bg-foreground/5 px-10 py-3"
       }
     >
-      <h1>Кабанка</h1>
+      <Link to={getRouteMain()}>
+        <h1>Канбанка</h1>
+      </Link>
 
       {authStore.isAuth ? (
         <div className={"flex items-center gap-2"}>

@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx"
 import { handleAxiosError } from "@/shared/api/handleAxiosError.ts"
 import RoomFormService from "../services/RoomFormService/RoomFormService"
+import type { IRoom } from "@/entities/Room"
 
 export class RoomFormStore {
   roomName = ""
@@ -18,15 +19,15 @@ export class RoomFormStore {
     this.inviteCode = inviteCode
   }
 
-  async createRoom() {
-    if (!this.roomName) return
+  async createRoom(): Promise<{ room: IRoom; guestId?: string } | null> {
+    if (!this.roomName.trim()) return null
 
     try {
-      await RoomFormService.createRoom(this.roomName)
+      const room = await RoomFormService.createRoom(this.roomName)
+      this.roomName = ""
+      return room
     } catch (e) {
       handleAxiosError(e)
     }
   }
-
-  // async joinRoom(inviteCode: string) {}
 }

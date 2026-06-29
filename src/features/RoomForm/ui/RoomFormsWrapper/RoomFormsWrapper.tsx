@@ -12,8 +12,8 @@ export const RoomFormsWrapper = ({
   return (
     <div
       className={cn(
-        "flex justify-center gap-2",
-        orientation === "horizontal" ? "w-full flex-row" : "flex-col"
+        "flex w-fit justify-center gap-2",
+        orientation === "horizontal" ? "w-full flex-wrap" : "flex-col"
       )}
     >
       <CreateRoomForm />

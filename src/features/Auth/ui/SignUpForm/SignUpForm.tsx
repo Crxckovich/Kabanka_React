@@ -34,7 +34,10 @@ export const SignUpForm = observer(({ onFormChange }: ISignUpFormProps) => {
       </CardHeader>
       <CardContent className={"mb-4"}>
         <form
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleSubmit()
+          }}
           className="flex flex-col gap-6"
         >
           <div>
@@ -76,33 +79,32 @@ export const SignUpForm = observer(({ onFormChange }: ISignUpFormProps) => {
               required
             />
           </div>
+          <CardFooter className="flex-col gap-2">
+            <Button
+              size={"lg"}
+              className={"w-full"}
+              type="submit"
+              disabled={
+                !authStore.email ||
+                !authStore.password ||
+                !authStore.name ||
+                !retryPassword
+              }
+            >
+              Зарегистрироваться
+            </Button>
+
+            <Button
+              type="button"
+              className={"w-full"}
+              variant={"link"}
+              onClick={onFormChange}
+            >
+              Уже есть аккаунт?
+            </Button>
+          </CardFooter>
         </form>
       </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button
-          size={"lg"}
-          className={"w-full"}
-          type="submit"
-          onClick={handleSubmit}
-          disabled={
-            !authStore.email ||
-            !authStore.password ||
-            !authStore.name ||
-            !retryPassword
-          }
-        >
-          Зарегистрироваться
-        </Button>
-
-        <Button
-          type="button"
-          className={"w-full"}
-          variant={"link"}
-          onClick={onFormChange}
-        >
-          Уже есть аккаунт?
-        </Button>
-      </CardFooter>
     </Card>
   )
 })

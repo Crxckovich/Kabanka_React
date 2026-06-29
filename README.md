@@ -1,9 +1,9 @@
-# Kabanka-Frontend
+# Kanbanka-Frontend
 
 FORK proJWT-Frontend проекта. Данный проект является еще и примером то как можно использовать
 proJWT внутри своего проекта
 
-**Кабанка** на стеке
+**Канбанка** на стеке
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![Bun](https://img.shields.io/badge/Bun-000000?logo=bun&logoColor=white)
